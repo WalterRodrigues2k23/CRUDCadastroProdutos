@@ -2,5 +2,7 @@
 {
     public class Products
     {
+        public Guid Id { get; set; }
+
     }
 }
