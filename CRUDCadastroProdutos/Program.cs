@@ -1,7 +1,13 @@
+using CRUDCadastroProdutos.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MVCDbContext>(options =>
+{
+
+});
 
 var app = builder.Build();
 
