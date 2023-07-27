@@ -1,4 +1,5 @@
 using CRUDCadastroProdutos.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MVCDbContext>(options =>
 {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MVCConnectionStrings"),
+        sqlServerOptionsAction: sqlOptions =>
+        {
 
+        })
 });
 
 var app = builder.Build();
