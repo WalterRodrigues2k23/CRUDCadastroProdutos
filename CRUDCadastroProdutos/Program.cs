@@ -10,8 +10,8 @@ builder.Services.AddDbContext<MVCDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MVCConnectionStrings"),
         sqlServerOptionsAction: sqlOptions =>
         {
-
-        })
+            sqlOptions.EnableRetryOnFailure();
+        });
 });
 
 var app = builder.Build();
