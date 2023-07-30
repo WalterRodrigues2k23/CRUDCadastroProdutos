@@ -6,5 +6,9 @@ namespace CRUDCadastroProdutos.Controllers
     public class ProductsController : Controller
     {
         private readonly MVCDbContext mVCDbContext;
+        public ProductsController(MVCDbContext mVCDbContext)
+        {
+            
+        }
     }
 }
