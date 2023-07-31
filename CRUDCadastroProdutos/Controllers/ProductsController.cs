@@ -8,7 +8,13 @@ namespace CRUDCadastroProdutos.Controllers
         private readonly MVCDbContext mVCDbContext;
         public ProductsController(MVCDbContext mVCDbContext)
         {
-            
+            this.mVCDbContext = mVCDbContext;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+
         }
     }
 }

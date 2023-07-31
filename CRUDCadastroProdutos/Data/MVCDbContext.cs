@@ -9,6 +9,6 @@ namespace CRUDCadastroProdutos.Data
         {            
         }
 
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
     }
 }
