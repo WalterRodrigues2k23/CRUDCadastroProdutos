@@ -1,5 +1,6 @@
 ﻿using CRUDCadastroProdutos.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUDCadastroProdutos.Controllers
 {
@@ -14,7 +15,10 @@ namespace CRUDCadastroProdutos.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-
+            var products = await mVCDbContext.Products.ToListAsync();
+            return View(products);
         }
+
+
     }
 }
