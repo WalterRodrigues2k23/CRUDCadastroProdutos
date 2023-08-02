@@ -19,6 +19,12 @@ namespace CRUDCadastroProdutos.Controllers
             return View(products);
         }
 
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
 
     }
 }
