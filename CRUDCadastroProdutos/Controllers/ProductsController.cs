@@ -1,4 +1,5 @@
 ﻿using CRUDCadastroProdutos.Data;
+using CRUDCadastroProdutos.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,20 @@ namespace CRUDCadastroProdutos.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Add(AddProductViewModel addProductRequest)
+        {
+            var Products = new Products()
+            {
+                Id = Guid.NewGuid(),
+                Name = addProductRequest.Name,
+                Price = addProductRequest.Price,
+                ValidDate = addProductRequest.ValidDate,
+            };
 
+            mVCDbContext.Products.Add(Products);
+
+            return RedirectToAction("Index");
+        }
     }
 }
