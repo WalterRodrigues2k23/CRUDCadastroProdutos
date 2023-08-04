@@ -41,5 +41,26 @@ namespace CRUDCadastroProdutos.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> View(Guid Id)
+        {
+            var product = await mVCDbContext.Products.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (product == null)
+            {
+                var viewmodel = new UpdateProductViewModel()
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    ValidDate = product.ValidDate,
+                };
+
+                return await Task.Run(() => View("View", viewModel));
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
