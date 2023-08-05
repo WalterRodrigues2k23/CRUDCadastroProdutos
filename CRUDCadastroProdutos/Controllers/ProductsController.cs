@@ -47,7 +47,7 @@ namespace CRUDCadastroProdutos.Controllers
         {
             var product = await mVCDbContext.Products.FirstOrDefaultAsync(x => x.Id == Id);
 
-            if (product == null)
+            if (product != null)
             {
                 var viewmodel = new UpdateProductViewModel()
                 {
@@ -58,6 +58,27 @@ namespace CRUDCadastroProdutos.Controllers
                 };
 
                 return await Task.Run(() => View("View", viewModel));
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> View(UpdateProductViewModel model)
+        {
+            var employee = await mVCDbContext.Products.FindAsync(model.Id);
+
+            if (employee != null)
+            {
+                employee.Name = model.Name;
+                employee.Email = model.Email;
+                employee.Salary = model.Salary;
+                employee.DateOfBirth = model.DateOfBirth;
+                employee.Department = model.Department;
+
+                await mVCDbContext.SaveChangesAsync();
+
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
