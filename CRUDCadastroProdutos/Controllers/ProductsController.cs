@@ -83,5 +83,21 @@ namespace CRUDCadastroProdutos.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UpdateProductViewModel model)
+        {
+            var employee = await mVCDbContext.Products.FindAsync(model.Id);
+
+            if (employee != null)
+            {
+                mVCDbContext.Products.Remove(employee);
+                await mVCDbContext.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
