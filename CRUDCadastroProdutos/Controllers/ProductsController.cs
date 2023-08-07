@@ -1,4 +1,5 @@
 ﻿using CRUDCadastroProdutos.Data;
+using CRUDCadastroProdutos.Models;
 using CRUDCadastroProdutos.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -66,16 +67,14 @@ namespace CRUDCadastroProdutos.Controllers
         [HttpPost]
         public async Task<IActionResult> View(UpdateProductViewModel model)
         {
-            var employee = await mVCDbContext.Products.FindAsync(model.Id);
+            var product = await mVCDbContext.Products.FindAsync(model.Id);
 
-            if (employee != null)
+            if (product != null)
             {
-                employee.Name = model.Name;
-                employee.Email = model.Email;
-                employee.Salary = model.Salary;
-                employee.DateOfBirth = model.DateOfBirth;
-                employee.Department = model.Department;
-
+                product.Name = model.Name;
+                product.Price = model.Price;                
+                product.ValidDate = model.ValidDate;
+                
                 await mVCDbContext.SaveChangesAsync();
 
                 return RedirectToAction("Index");
@@ -87,11 +86,11 @@ namespace CRUDCadastroProdutos.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(UpdateProductViewModel model)
         {
-            var employee = await mVCDbContext.Products.FindAsync(model.Id);
+            var product = await mVCDbContext.Products.FindAsync(model.Id);
 
-            if (employee != null)
+            if (product != null)
             {
-                mVCDbContext.Products.Remove(employee);
+                mVCDbContext.Products.Remove(product);
                 await mVCDbContext.SaveChangesAsync();
 
                 return RedirectToAction("Index");
