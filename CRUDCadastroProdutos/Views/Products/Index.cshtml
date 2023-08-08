@@ -1,0 +1,30 @@
+﻿@model List<CRUDCadastroProdutos.Models.Domain.Products>
+   
+@{
+}
+
+<h1>Products</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Valid Date</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var products in Model)
+        {
+            <tr>
+                <td>@products.Id</td>
+                <td>@products.Name</td>
+                <td>@products.Price</td>
+                <td>@products.ValidDate.ToString("dd-MM-yyyy")</td>
+                <td><a href="Products/View/@products.Id">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
